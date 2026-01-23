@@ -1,0 +1,1 @@
+Nell’esercizio relativo alle università, ho scelto di aggiungere anche una relazione molti a molti tra studenti e corsi, per rappresentare i corsi opzionali scelti. In alcuni corsi di laurea, come Scienze dell’Educazione, infatti, gli studenti possono scegliere tra più insegnamenti alternativi.
