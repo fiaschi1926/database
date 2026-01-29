@@ -1,0 +1,47 @@
+-- 1 -> 68
+SELECT * FROM public.students s
+inner join public.degrees d on s.degree_id = d.id
+where d.name = 'Corso di Laurea in Economia'
+
+-- 2 -> 1
+SELECT * FROM public.degrees d
+inner join public.departments dp on dp.id=d.department_id
+where dp.name = 'Dipartimento di Neuroscienze' and d.level='magistrale'
+ORDER BY d.id ASC 
+
+--3 -> 11
+SELECT c.name as nome_corso FROM teachers t
+inner join course_teacher ct on ct.teacher_id=t.id
+inner join courses c on c.id = ct.course_id
+where t.id = 44
+
+--4
+SELECT s.name,s.surname,d.name,dp.name FROM public.students s
+inner join public.degrees d on s.degree_id = d.id
+inner join public.departments dp on dp.id=d.department_id
+--where d.name = 'Corso di Laurea in Economia'
+order by s.surname asc,s.name asc
+
+--5
+SELECT c.name as nome_corso, t.name , t.surname FROM courses c
+inner join course_teacher ct on c.id = ct.course_id
+inner join teachers t on ct.teacher_id=t.id
+
+
+--6  -> 54
+SELECT distinct t.name,t.surname FROM teachers t
+inner join course_teacher ct on ct.teacher_id=t.id
+inner join courses c on c.id = ct.course_id
+inner join public.degrees d on c.degree_id = d.id
+inner join public.departments dp on dp.id=d.department_id
+where dp.name = 'Dipartimento di Matematica'
+
+
+--7
+SELECT s.id as is_studente,c.id as id_corso,count(*) FROM public.students s
+inner join public.exam_student es on es.student_id = s.id
+inner join public.exams e on e.id = es.exam_id
+inner join public.courses c on c.id = e.course_id
+where es.vote <= 18
+group by s.id,c.id
+order by s.name
